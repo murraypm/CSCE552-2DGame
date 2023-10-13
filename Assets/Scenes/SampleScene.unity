@@ -224,7 +224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   movementSpeed: 1
-  pathDistanceMaximum: 5
+  pathDistanceMaximum: 3
   currentPath: 0
 --- !u!61 &344054041
 BoxCollider2D:
@@ -415,7 +415,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -472,6 +472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 10
   jumpSpeed: 5
+  health: 3
   bullet: {fileID: 1557328782}
 --- !u!1 &519420028
 GameObject:

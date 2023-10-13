@@ -19,9 +19,18 @@ public class EnemyScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentPath >= pathDistanceMaximum)
+        if (currentPath > pathDistanceMaximum || currentPath < 0)
         {
-
+            direction = !direction;
+        }
+        if (direction)
+        {
+            currentPath += movementSpeed * Time.deltaTime;
+            transform.Translate(transform.right * movementSpeed * Time.deltaTime);
+        } else
+        {
+            currentPath -= movementSpeed * Time.deltaTime;
+            transform.Translate(-1 * transform.right * movementSpeed * Time.deltaTime);
         }
         if (health <= 0)
         {
