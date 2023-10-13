@@ -29,7 +29,8 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            Instantiate(bullet, transform.position, transform.rotation).SetActive(true);
+            position.x += 2;
+            Instantiate(bullet, position, transform.rotation).SetActive(true);
         }
     }
 
