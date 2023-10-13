@@ -8,6 +8,7 @@ public class PlayerInput : MonoBehaviour
 {
     public float movementSpeed = 1.0f;
     public float jumpSpeed = 1.0f;
+    public GameObject bullet;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,11 @@ public class PlayerInput : MonoBehaviour
         position.x += movementSpeed * horizontal * Time.deltaTime;
         position.y += jumpSpeed * vertical * Time.deltaTime;
         transform.position = position;
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Instantiate(bullet, transform.position, transform.rotation).SetActive(true);
+        }
     }
 
 /*    public void OnMove(InputValue value)
