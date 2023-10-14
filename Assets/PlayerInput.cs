@@ -14,6 +14,8 @@ public class PlayerInput : MonoBehaviour
     public int health = 3;
     public GameObject bullet;
 
+    public AudioSource WalkingOnGrass;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +49,10 @@ public class PlayerInput : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.tag.Equals("Terrain"))
+        {
+            WalkingOnGrass.Play();
+        }
         if (collision.gameObject.tag.Equals("Enemy"))
         {
             health -= 1;
