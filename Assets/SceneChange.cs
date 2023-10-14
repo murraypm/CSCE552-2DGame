@@ -20,7 +20,7 @@ public class SceneChange : MonoBehaviour
     public void ChangeScene()
     {
         // print("test");
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("GameDesign3");
     }
 
     public void ReturnToTitle()

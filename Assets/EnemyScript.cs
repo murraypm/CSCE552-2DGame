@@ -10,15 +10,30 @@ public class EnemyScript : MonoBehaviour
     public float currentPath = 0.0f;
     private bool direction = true; // true = right, false = left
 
+    public AudioSource DuckQuacking;
+    public AudioSource DuckDeathNoise;
+    public AudioSource DuckDamageNoise;
+    private float timeBetweenQuacks = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        DuckQuacking = gameObject.GetComponents<AudioSource>()[0];
+        // DuckDeathNoise = gameObject.GetComponents<AudioSource>()[1];
+        DuckDamageNoise = gameObject.GetComponents<AudioSource>()[2];
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (timeBetweenQuacks > 3)
+        {
+            timeBetweenQuacks = 0;
+            DuckQuacking.Play();
+        } else
+        {
+            timeBetweenQuacks += Time.deltaTime;
+        }
         if (currentPath > pathDistanceMaximum || currentPath < 0)
         {
             direction = !direction;
@@ -34,6 +49,7 @@ public class EnemyScript : MonoBehaviour
         }
         if (health <= 0)
         {
+            // DuckDeathNoise.Play();
             Destroy(gameObject);
         }
     }
@@ -43,6 +59,7 @@ public class EnemyScript : MonoBehaviour
         if (collision.gameObject.tag.Equals("Bullet"))
         {
             health -= 1;
+            DuckDamageNoise.Play();
         }
     }
 }

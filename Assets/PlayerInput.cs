@@ -1,9 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEditor.Experimental.GraphView;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,11 +11,13 @@ public class PlayerInput : MonoBehaviour
     public GameObject bullet;
 
     public AudioSource WalkingOnGrass;
+    public AudioSource DamageNoise;
 
     // Start is called before the first frame update
     void Start()
     {
-        WalkingOnGrass = GetComponent<AudioSource>();
+        WalkingOnGrass = gameObject.GetComponents<AudioSource>()[0];
+        DamageNoise = gameObject.GetComponents<AudioSource>()[2];
     }
 
     // Update is called once per frame
@@ -45,7 +43,7 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             bulletPosition = transform.position;
-            bulletPosition.x += 2 * horizontal;
+            bulletPosition.x += 2;
             Instantiate(bullet, bulletPosition, transform.rotation).SetActive(true);
         }
     }
@@ -59,6 +57,7 @@ public class PlayerInput : MonoBehaviour
         }
         if (collision.gameObject.tag.Equals("Enemy"))
         {
+            DamageNoise.Play();
             health -= 1;
         }
     }
