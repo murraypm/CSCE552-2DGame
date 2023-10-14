@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -28,6 +30,8 @@ public class PlayerInput : MonoBehaviour
         }
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+
+        gameObject.GetComponent<SpriteRenderer>().flipX = horizontal < 0;
 
         Vector2 position = transform.position;
         position.x += movementSpeed * horizontal * Time.deltaTime;
