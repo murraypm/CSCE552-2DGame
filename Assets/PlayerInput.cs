@@ -19,7 +19,7 @@ public class PlayerInput : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        WalkingOnGrass = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -51,6 +51,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Terrain"))
         {
+            
             WalkingOnGrass.Play();
         }
         if (collision.gameObject.tag.Equals("Enemy"))
