@@ -21,6 +21,8 @@ public class PlayerInput : MonoBehaviour
     }
 
     // Update is called once per frame
+    Vector2 position;
+    Vector2 bulletPosition;
     void Update()
     {
         if (health <= 0)
@@ -33,15 +35,16 @@ public class PlayerInput : MonoBehaviour
 
         gameObject.GetComponent<SpriteRenderer>().flipX = horizontal < 0;
 
-        Vector2 position = transform.position;
+        position = transform.position;
         position.x += movementSpeed * horizontal * Time.deltaTime;
         position.y += jumpSpeed * vertical * Time.deltaTime;
         transform.position = position;
 
         if (Input.GetButtonDown("Fire1"))
         {
-            position.x += 1;
-            Instantiate(bullet, position, transform.rotation).SetActive(true);
+            bulletPosition = transform.position;
+            bulletPosition.x += 2 * horizontal;
+            Instantiate(bullet, bulletPosition, transform.rotation).SetActive(true);
         }
     }
 
